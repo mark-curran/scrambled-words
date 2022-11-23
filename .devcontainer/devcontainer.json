@@ -1,0 +1,112 @@
+{
+    // Instructions for the VSCode Remote-Containers extension.
+    "name": "Data Science Project", // As appears in the VSC UI.
+    "dockerComposeFile": "./docker-compose-local.yml",
+    "runServices": [
+        "local"
+    ],
+    "service": "local",
+    "workspaceFolder": "/workspace",
+    "overrideCommand": true, // Must be true in order to prevent container shutting down prematurely while VSC server is starting.
+    "customizations": {
+        "vscode": {
+            // Will add to settings.json inside the container.
+            "settings": {
+                "autoDocstring.docstringFormat": "google",
+                "autoDocstring.generateDocstringOnEnter": true,
+                "autoDocstring.guessTypes": true,
+                "autoDocstring.includeExtendedSummary": true,
+                // Assumes the developer knows where your tests are and when you want to run them.
+                "autoTestDiscoverOnSaveEnabled": false,
+                // Command to run on file save.
+                "emeraldwalk.runonsave": {
+                    "commands": [
+                        // Unless "isAsync": true, then commands run sequentially. 
+                        {
+                            "match": "\\.sql$",
+                            "cmd": "sqlfluff fix --dialect=bigquery -f ${file}"
+                        },
+                        {
+                            "match": "\\.py$",
+                            "cmd": "isort ${file}"
+                        },
+                        {
+                            "match": "\\.py$",
+                            "cmd": "black ${file}"
+                        },
+                        {
+                            "match": "(requirements\\.txt)$",
+                            "cmd": "sort-requirements ${file}"
+                        }
+                    ]
+                },
+                // Controls whether suggestions should automatically show up while typing.
+                "editor.quickSuggestions": {
+                    "other": "off",
+                    "comments": "off",
+                    "strings": "off"
+                },
+                // Less notifications to install extensions.
+                "extensions.ignoreRecommendations": true,
+                // Editor actions in response to certain git commands.
+                "git.closeDiffOnOperation": true,
+                "git.mergeEditor": false,
+                "git.suggestSmartCommit": false,
+                "git.useIntegratedAskPass": false,
+                // Control markdown linting.
+                "[markdown]": {
+                    "editor.formatOnSave": true
+                },
+                "markdownlint.config": {
+                    "MD007": { 
+                        "indent": 4 
+                    }
+                },
+                // Controls if extensions are run inside the ui or in the workspace.
+                "remote.extensionKind": {
+                    "ms-python.python": [
+                        "workspace"
+                    ],
+                    "emeraldwalk.runonsave": [
+                        "workspace"
+                    ],
+                    "Gruntfuggly.todo-tree" : ["workspace"],
+                    "njpwerner.autodocstring": [
+                        "workspace"
+                    ]
+                },
+                "[python]": {
+                    "editor.rulers": [79, 99]
+                },
+                "python.analysis.diagnosticSeverityOverrides": {
+                    // on a local machine, do not complain about missing imports.
+                    "reportMissingImports": "none",
+                    "reportUnusedVariable": "warning"
+                },
+                // Use a custom on save command instead.
+                "python.linting.lintOnSave": true,
+                // Show errors from these code checkers in the "PROBLEMS" tab.
+                "python.linting.pylintEnabled": true,
+                "python.linting.pylintArgs": ["--disable", "import-error"],
+                "python.linting.pydocstyleEnabled": true,
+                // Do not get prompted to configure tests through the UI.
+                "python.testing.promptToConfigure": false,
+                "telemetry.telemetryLevel": "off",
+                // Replace with preferred color options.
+                "workbench.colorCustomizations": {
+                    "editorRuler.foreground": "#0066ff"
+                },                
+                "workbench.colorTheme": "Cobalt2"
+            },
+            // List of extensions.
+            "extensions": [
+				"ms-python.python",
+				"emeraldwalk.RunOnSave",
+				"njpwerner.autodocstring",
+				"Gruntfuggly.todo-tree",
+				"DavidAnson.vscode-markdownlint",
+				"wesbos.theme-cobalt2"
+			]
+        }
+    }
+}

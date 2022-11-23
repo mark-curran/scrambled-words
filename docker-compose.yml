@@ -1,0 +1,11 @@
+version: '3'
+services:
+  prod:
+    build:
+      context: '.'
+      args:
+        REQIREMENTS_FILE: './requirements.txt'
+        STARTING_DIR: '/src'
+    volumes:
+      - ./src:/src
+    image: scrambled-words

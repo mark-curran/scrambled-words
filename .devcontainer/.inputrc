@@ -1,0 +1,13 @@
+# Respect default shortcuts.
+$include /etc/inputrc
+
+## arrow up to search forward through history.
+"\e[A":history-search-backward
+## arrow down to search backward through history.
+"\e[B":history-search-forward
+# make tab cycle through commands after listing
+"\t": menu-complete
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set completion-ignore-case on
+set menu-complete-display-prefix on

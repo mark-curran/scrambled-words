@@ -1,0 +1,26 @@
+version: '3'
+services:
+  local:
+    build:
+      context: '..'
+      args:
+        REQUIREMENTS_FILE: '.devcontainer/local-requirements.txt'
+        STARTING_DIR: '/workspace'
+    image: scrambled-words-local
+    volumes:
+      - ..:/workspace
+      - ../src:/src
+      # Mount to use a custom bash configuration.
+      - ./.inputrc:/root/.inputrc
+      - ./.git-prompt.sh:/root/.git-prompt.sh
+      - ./.git-completion.bash:/root/.git-completion.bash
+      - ./.bashrc:/root/.bashrc
+      # Mount to persist bash history on the host machine.
+      - ./.bash_history:/root/.bash_history
+    # Uncomment to expose a port at the host ip address.
+    # ports:
+    #   - target: 8000
+    #     host_ip: 127.0.0.1
+    #     published: 8000
+    #     protocol: tcp
+    #     mode: host
