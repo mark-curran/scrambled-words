@@ -1,6 +1,6 @@
 {
     // Instructions for the VSCode Remote-Containers extension.
-    "name": "Data Science Project", // As appears in the VSC UI.
+    "name": "Scrambled Words Local", // As appears in the VSC UI.
     "dockerComposeFile": "./docker-compose-local.yml",
     "runServices": [
         "local"
@@ -22,10 +22,6 @@
                 "emeraldwalk.runonsave": {
                     "commands": [
                         // Unless "isAsync": true, then commands run sequentially. 
-                        {
-                            "match": "\\.sql$",
-                            "cmd": "sqlfluff fix --dialect=bigquery -f ${file}"
-                        },
                         {
                             "match": "\\.py$",
                             "cmd": "isort ${file}"
@@ -73,7 +69,9 @@
                     "Gruntfuggly.todo-tree" : ["workspace"],
                     "njpwerner.autodocstring": [
                         "workspace"
-                    ]
+                    ],
+                    "foxundermoon.shell-format": ["workspace"],
+                    "DavidAnson.vscode-markdownlint": ["workspace"]
                 },
                 "[python]": {
                     "editor.rulers": [79, 99]
@@ -105,7 +103,8 @@
 				"njpwerner.autodocstring",
 				"Gruntfuggly.todo-tree",
 				"DavidAnson.vscode-markdownlint",
-				"wesbos.theme-cobalt2"
+				"wesbos.theme-cobalt2",
+                "foxundermoon.shell-format"
 			]
         }
     }
