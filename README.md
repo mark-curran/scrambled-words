@@ -39,3 +39,5 @@ pytest ...
 ## Local Development
 
 Instructions on setting up a local dev environment.
+
+TODO: Add section on logging levels
