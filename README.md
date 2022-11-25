@@ -6,13 +6,15 @@ Note, this repo uses boilerplate code from this [template](https://github.com/ma
 
 ## Running the Code
 
+### Creating Solution File
+
 To run the code, run this command.
 
 ```bash
 .src/scrmabled_strings.py --dictionary [PATH TO DICTIONARY FILE] --input [PATH TO INPUT FILE]
 ```
 
-## Create sample data
+### Creating Sample Data
 
 You can create a sample dictionary as follows.
 
@@ -26,10 +28,16 @@ You can create a sample input file as follows.
 python ./src/generate_data.py --input-output [PATH TO INPUT FILE]
 ```
 
-## Running the Tests
+### Running Tests
 
 To run tests, run this command.
 
 ```bash
 pytest ...
 ```
+
+## Local Development
+
+Instructions on setting up a local dev environment.
+
+TODO: Add section on logging levels, i.e., `export SCRAMBLED_WORDS_DEBUG_MODE=1` to set debug as the logging level.
