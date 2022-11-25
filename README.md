@@ -40,4 +40,4 @@ pytest ...
 
 Instructions on setting up a local dev environment.
 
-TODO: Add section on logging levels
+TODO: Add section on logging levels, i.e., `export SCRAMBLED_WORDS_DEBUG_MODE=1` to set debug as the logging level.
