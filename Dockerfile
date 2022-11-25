@@ -12,6 +12,8 @@ RUN pip3 install -r /tmp/docker_build/${REQUIREMENTS_FILE}
 # Copy the current contents of ./src to the /src directory inside the container.
 COPY ./src /src
 
+# TODO: Write a scrmabled_strings bash script (without extension) and chmod it so it's executable.
+
 # Change to the starting directory.
 WORKDIR ${STARTING_DIR}
 
