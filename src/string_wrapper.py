@@ -21,21 +21,22 @@ class StringWrapper:
                 f"Input string {input_str} is not of length greater than 1."
             )
 
+        # TODO: Rename input_str, this is very confusing in practice.
         self.input_str = input_str
         self._first_letter = input_str[0]
         self._last_letter = input_str[-1]
         self._length = len(input_str)
-        self._array_encoding = self.str_to_array_encoding(input_str)
+        self._mid_array_encoding = self.str_to_array_encoding(input_str[1:-1])
 
     @property
-    def array_encoding(self):
+    def mid_array_encoding(self):
         """Get the byte array encoding of the input string."""
-        return self._array_encoding
+        return self._mid_array_encoding
 
-    @array_encoding.setter
-    def array_encoding(self):
+    @mid_array_encoding.setter
+    def mid_array_encoding_encoding(self):
         """Try to set the array_encoding attribute."""
-        raise Exception("Cannot set the array_encoding attribute.")
+        raise Exception("Cannot set the mid_array_encoding attribute.")
 
     @property
     def length(self):

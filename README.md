@@ -6,13 +6,15 @@ Note, this repo uses boilerplate code from this [template](https://github.com/ma
 
 ## Running the Code
 
-### Creating Solution File
+### Running the Solution
 
 To run the code, run this command.
 
 ```bash
 .src/scrmabled_strings.py --dictionary [PATH TO DICTIONARY FILE] --input [PATH TO INPUT FILE]
 ```
+
+TODO: Note that the string encoding must be utf-8.
 
 ### Creating Sample Data
 
