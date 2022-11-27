@@ -2,7 +2,7 @@
 from random import randint
 from string import ascii_lowercase
 
-from configure_logging import getLogger
+from src.configure_logging import getLogger
 
 logger = getLogger(__name__)
 
@@ -18,7 +18,7 @@ def make_dict_file(
         )
 
     # Initialize a counter of the current length of the dictionary.
-    current_dict_length = 0
+    current_total_chars = 0
 
     with open(output_file, "w", encoding="utf-8") as file:
         for j in range(0, num_entries):
@@ -31,8 +31,8 @@ def make_dict_file(
 
             word = "".join(letters)
 
-            current_dict_length += len(word)
-            if current_dict_length > 105:
+            current_total_chars += len(word)
+            if current_total_chars > 105:
                 logger.warning("Dictionary length exceeds 105, breaking from loop.")
                 break
             else:
