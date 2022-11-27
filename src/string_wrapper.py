@@ -10,23 +10,23 @@ logger = getLogger(__name__)
 class StringWrapper:
     """TODO: Class docstring."""
 
-    def __init__(self, input_str: str) -> None:
+    def __init__(self, base_str: str) -> None:
         """Initiate the StringWrapper class."""
-        if not isinstance(input_str, str):
+        if not isinstance(base_str, str):
             raise TypeError(
-                f"StringWrapper can only wrap strings and {input_str} is not a string."
+                f"StringWrapper can only wrap strings and {base_str} is not a string."
             )
-        if len(input_str) == 1:
+        if len(base_str) == 1:
             raise ValueError(
-                f"Input string {input_str} is not of length greater than 1."
+                f"Input string {base_str} is not of length greater than 1."
             )
 
-        # TODO: Rename input_str, this is very confusing in practice.
-        self.input_str = input_str
-        self._first_letter = input_str[0]
-        self._last_letter = input_str[-1]
-        self._length = len(input_str)
-        self._mid_array_encoding = self.str_to_array_encoding(input_str[1:-1])
+        # TODO: Rename base_str, this is very confusing in practice.
+        self.base_str = base_str
+        self._first_letter = base_str[0]
+        self._last_letter = base_str[-1]
+        self._length = len(base_str)
+        self._mid_array_encoding = self.str_to_array_encoding(base_str[1:-1])
 
     @property
     def mid_array_encoding(self):
@@ -69,11 +69,11 @@ class StringWrapper:
         raise Exception("Cannot set the last letter attribute.")
 
     @classmethod
-    def str_to_array_encoding(cls, input_str: str):
+    def str_to_array_encoding(cls, base_str: str):
         """Convert a string to a array encoding."""
         array = []
         for letter in ascii_lowercase:
-            array.append(input_str.count(letter))
+            array.append(base_str.count(letter))
 
         return array
 
