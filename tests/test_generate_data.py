@@ -43,7 +43,6 @@ def test_make_dict_file(
     tmp_path: Path, num_entries: int, max_str_length: int, invalid_str_length: int
 ):
     """Test the make_dict_file function."""
-
     filepath = tmp_path / "test_dict_file.txt"
     make_dict_file(num_entries, filepath, max_str_length)
 
