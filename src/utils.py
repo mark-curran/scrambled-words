@@ -100,7 +100,7 @@ def check_for_scrambled_substring(
             # Stop the search and return True if you find a scrambled substring.
             return True
 
-    # If you reach this point then no\ permutations were found.
+    # If you reach this point then no permutations were found.
     return False
 
 

@@ -27,6 +27,9 @@ class StringWrapper:
         self._last_letter = base_str[-1]
         self._length = len(base_str)
         self._mid_array_encoding = self.str_to_array_encoding(base_str[1:-1])
+        logger.debug(
+            "Mid array encoding of %s is: %s", self.base_str, self._mid_array_encoding
+        )
 
     @property
     def mid_array_encoding(self):

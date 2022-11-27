@@ -2,7 +2,7 @@
 from random import randint
 from string import ascii_lowercase
 
-from src.configure_logging import getLogger
+from configure_logging import getLogger
 
 logger = getLogger(__name__)
 
