@@ -1,7 +1,27 @@
 """Tests for the utils.py module."""
 
-from src.utils import (check_for_scrambled_substring,
-                       check_for_substr_permutations, int_arrays_equal)
+import pytest
+
+from src.utils import (
+    check_for_scrambled_substring,
+    check_for_substr_permutations,
+    count_scrambled_substrings,
+    int_arrays_equal,
+)
+
+
+@pytest.fixture(name="list_input")
+def fixture_list_input():
+    """A list of strings to check."""
+
+    return ["aapxjdnrbtvldptfzbbdbbzxtndrvjblnzjfpvhdhhpxjdnrbt"]
+
+
+@pytest.fixture(name="dict_dict")
+def fixture_dict_dict(dnrbt_string_wrapper, axpaj_string_wrapper):
+    """A dictionary of wrappers of length 5."""
+
+    return {5: [dnrbt_string_wrapper, axpaj_string_wrapper]}
 
 
 def test_int_arrays_equal():
@@ -54,5 +74,13 @@ def test_check_for_scrambled_substring(axpaj_string_wrapper):
         wrapper=axpaj_string_wrapper,
     )
 
-def test_count_scrambled_substrings():
-    # TODO: Finish writing this test.
+
+def test_count_scrambled_substrings(dict_dict, list_input):
+    """Test the count_scrambled_substrings function."""
+
+    assert (
+        count_scrambled_substrings(
+            dict_dict, "aapxjdnrbtvldptfzbbdbbzxtndrvjblnzjfpvhdhhpxjdnrbt", [5]
+        )
+        == 2
+    )
