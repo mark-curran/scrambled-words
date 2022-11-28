@@ -1,4 +1,4 @@
-"""Fixtures that are used across multiple tests."""
+"""Fixtures that are available to multiple tests."""
 from unittest.mock import Mock
 
 import pytest

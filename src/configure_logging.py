@@ -6,7 +6,7 @@ from logging import DEBUG, INFO, Formatter, StreamHandler, getLogger
 root_logger = getLogger()
 
 
-# Set log level based on env variable.
+# If SCRAMBLED_WORDS_DEBUG_MODE is set to 1, then set log level to DEBUG.
 if "SCRAMBLED_WORDS_DEBUG_MODE" in os.environ:
     if os.environ["SCRAMBLED_WORDS_DEBUG_MODE"] == "1":
         root_logger.setLevel(DEBUG)
@@ -16,9 +16,7 @@ else:
 # Format log messages in desired format.
 # Full list of available substitutions:
 # https://docs.python.org/3/library/logging.html#logrecord-attributes
-# TODO: If using multi-threading then add %(threadName)s
 formatter = Formatter(fmt="%(levelname)s %(funcName)s %(lineno)d: %(message)s")
-
 
 # Always log to stdout with desired format.
 handler = StreamHandler(stream=sys.stdout)
