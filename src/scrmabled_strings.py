@@ -12,14 +12,23 @@ parser.add_argument("--input", help="Path to the input file.", required=True)
 logger = getLogger(__name__)
 
 
-def main(dictionary_path: str, input_path: str):
-    """Run the sequence of steps to produce a solution."""
+def main(dictionary_path: str, input_path: str) -> None:
+    """Count number of scrambled substrings in an input file.
 
-    # We need to wrap the dictionary file as an actual dictioary.
+    Args:
+        dictionary_path (str):
+            Path to the dictionary file with the strings that we will look for.
+        input_path (str):
+            Path to the input file with the strings we will look through.
+    """
+    # A place to store the wrappers from our dictionary, keys are the length
+    # of each wrapper.
     dict_dict = {}
 
+    # Generate the wrappers.
     with open(dictionary_path, "r", encoding="utf-8") as file:
         for j, line in enumerate(file.readlines()):
+            # Use .rstrip() to get rid of the new line character.
             logger.debug(f"The {j}-th line is: {line.rstrip()}")
             wrapper = StringWrapper(line.rstrip())
             length = wrapper.length
@@ -31,20 +40,21 @@ def main(dictionary_path: str, input_path: str):
             logger.debug(f"Appending {j}-th wrapped string to dict_dict.")
             dict_dict[wrapper.length].append(wrapper)
 
-    # We need the input strings as a dictionary.
-    list_input = []
+    # Get the lengths of the wrappers as a separate list.
+    dict_lengths = list(dict_dict)
 
+    # We also need the input strings as a dictionary.
+    list_input = []
     with open(input_path, "r", encoding="utf-8") as file:
         for j, line in enumerate(file.readlines()):
             logger.debug(f"The {j}-th line is: {line.rstrip()}")
             list_input.append(line.rstrip())
 
-    dict_lengths = list(dict_dict)
-
+    # Initiate our output.
     output_str = ""
 
+    # Search the inputs for scrambled strings and format the output.
     for j, input_str in enumerate(list_input):
-
         num_scrambled_substrings = count_scrambled_substrings(
             dict_dict, input_str, dict_lengths
         )
@@ -52,7 +62,7 @@ def main(dictionary_path: str, input_path: str):
         logger.debug("Num of scrambled substrings: %s", num_scrambled_substrings)
         output_str = output_str + f"Case: #{j+1} {num_scrambled_substrings}\n"
 
-    # Print to stdout.
+    # Print solution to stdout.
     print(output_str)
 
 
