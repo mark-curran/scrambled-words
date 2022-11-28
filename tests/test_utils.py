@@ -34,18 +34,14 @@ def test_int_arrays_equal():
 def test_check_for_substr_permutations(axpaj_string_wrapper):
     """Test for check_for_substr_permutations."""
     # Test with an input stubstring that does have a scrambled substring.
+    input_str = "aapxjdnrbtvldptfzbbdbbzxtndrvjblnzjfpvhdhhpxjdnrbt"
+
     assert check_for_substr_permutations(
-        input_string="aapxjdnrbtvldptfzbbdbbzxtndrvjblnzjfpvhdhhpxjdnrbt",
-        wrapper=axpaj_string_wrapper,
-        idx_first=0,
-        idx_second=4,
+        str_to_check=input_str[0 + 1 : 4], wrapper=axpaj_string_wrapper
     )
     # Test with an input stubstring that does not have a scrambled substring.
     assert not check_for_substr_permutations(
-        input_string="nopermutationhere",
-        wrapper=axpaj_string_wrapper,
-        idx_first=0,
-        idx_second=4,
+        str_to_check="nopermutationhere", wrapper=axpaj_string_wrapper
     )
 
 
