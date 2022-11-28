@@ -2,6 +2,10 @@
 
 from string import ascii_lowercase
 
+from configure_logging import getLogger
+
+logger = getLogger(__name__)
+
 
 class StringWrapper:
     """Save some properties of a string.
