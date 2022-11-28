@@ -1,7 +1,7 @@
 """Configure logging based on environment variables."""
 import os
 import sys
-from logging import DEBUG, INFO, Formatter, StreamHandler, getLogger
+from logging import DEBUG, INFO, WARNING, Formatter, StreamHandler, getLogger
 
 root_logger = getLogger()
 
@@ -10,8 +10,11 @@ root_logger = getLogger()
 if "SCRAMBLED_WORDS_DEBUG_MODE" in os.environ:
     if os.environ["SCRAMBLED_WORDS_DEBUG_MODE"] == "1":
         root_logger.setLevel(DEBUG)
+if "SCRAMBLED_WORDS_LOG_MATCHES" in os.environ:
+    if os.environ["SCRAMBLED_WORDS_LOG_MATCHES"] == "1":
+        root_logger.setLevel(INFO)
 else:
-    root_logger.setLevel(INFO)
+    root_logger.setLevel(WARNING)
 
 # Format log messages in desired format.
 # Full list of available substitutions:
