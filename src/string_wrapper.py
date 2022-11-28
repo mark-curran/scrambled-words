@@ -2,16 +2,26 @@
 
 from string import ascii_lowercase
 
-from configure_logging import getLogger
-
-logger = getLogger(__name__)
-
 
 class StringWrapper:
-    """TODO: Class docstring."""
+    """Save some properties of a string.
+
+    The mid_array_encoding is a sequence of 26 integers, each corresponding
+    to the number of instances of that letter in that position in the alphabet
+    that are present in the input string.
+    """
 
     def __init__(self, base_str: str) -> None:
-        """Initiate the StringWrapper class."""
+        """Wrap the base string.
+
+        Args:
+            base_str (str):
+                Base string to be wrapped.
+
+        Raises:
+            TypeError: If base_str is not a string.
+            ValueError: If base_str is not of length greater than 1.
+        """
         if not isinstance(base_str, str):
             raise TypeError(
                 f"StringWrapper can only wrap strings and {base_str} is not a string."
@@ -21,7 +31,6 @@ class StringWrapper:
                 f"Input string {base_str} is not of length greater than 1."
             )
 
-        # TODO: Rename base_str, this is very confusing in practice.
         self.base_str = base_str
         self._first_letter = base_str[0]
         self._last_letter = base_str[-1]
@@ -33,7 +42,7 @@ class StringWrapper:
 
     @property
     def mid_array_encoding(self):
-        """Get the byte array encoding of the input string."""
+        """Get the array encoding of the middle characters of the base string."""
         return self._mid_array_encoding
 
     @mid_array_encoding.setter
@@ -43,17 +52,17 @@ class StringWrapper:
 
     @property
     def length(self):
-        """Get the length of ths tring."""
+        """Get the length of the base string."""
         return self._length
 
     @length.setter
     def length(self):
         """Try to set the length attribute."""
-        raise Exception("Cannot set the first length attribute.")
+        raise Exception("Cannot set the length attribute.")
 
     @property
     def first_letter(self):
-        """Get the first letter."""
+        """Get the first letter of the base string."""
         return self._first_letter
 
     @first_letter.setter
@@ -63,7 +72,7 @@ class StringWrapper:
 
     @property
     def last_letter(self):
-        """Get the last letter."""
+        """Get the last letter of the base string."""
         return self._last_letter
 
     @last_letter.setter
@@ -73,16 +82,9 @@ class StringWrapper:
 
     @classmethod
     def str_to_array_encoding(cls, base_str: str):
-        """Convert a string to a array encoding."""
+        """Convert a string to an array of 26 integers."""
         array = []
         for letter in ascii_lowercase:
             array.append(base_str.count(letter))
 
         return array
-
-
-if __name__ == "__main__":
-    # TODO: Delete this function.
-    wrapper = StringWrapper("hello")
-
-    breakpoint()
