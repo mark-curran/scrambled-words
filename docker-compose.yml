@@ -1,10 +1,10 @@
 version: '3'
 services:
-  prod:
+  scrambled-words:
     build:
       context: '.'
       args:
-        REQIREMENTS_FILE: './requirements.txt'
+        REQUIREMENTS_FILE: './requirements.txt'
         STARTING_DIR: '/src'
     volumes:
       - ./src:/src

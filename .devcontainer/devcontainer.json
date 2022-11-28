@@ -3,9 +3,9 @@
     "name": "Scrambled Words Local", // As appears in the VSC UI.
     "dockerComposeFile": "./docker-compose-local.yml",
     "runServices": [
-        "local"
+        "local-dev"
     ],
-    "service": "local",
+    "service": "local-dev",
     "workspaceFolder": "/workspace",
     "overrideCommand": true, // Must be true in order to prevent container shutting down prematurely while VSC server is starting.
     "customizations": {
