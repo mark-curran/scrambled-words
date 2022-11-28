@@ -8,39 +8,40 @@ logger = getLogger(__name__)
 
 
 def count_scrambled_substrings(
-    dict_dict: str, list_input: list[str], dict_lengths: list[int]
+    dict_dict: str, input_string, dict_lengths: list[int]
 ) -> list[str]:
     """
     Return a list of instances of scrambled substrings from dict_dict in list_input.
 
     TODO: Update docstring.
     """
+    num_scrambled_substrings = 0
+    length_input = len(input_string)
 
-    for j, input_string in enumerate(list_input):
-        logger.debug("The %s-th input string is %s", j, input_string)
-        length_input = len(input_string)
+    # Only scrambled strings with length less than the input string can
+    # exist as substrings.
+    relevant_lengths = [k for k in dict_lengths if k <= length_input]
 
-        # Only scrambled strings with length less than the input string can
-        # exist as substrings.
-        relevant_lengths = [k for k in dict_lengths if k <= length_input]
+    for substr_length in relevant_lengths:
+        logger.debug("Searching for scrambled substrings of length: %s", substr_length)
+        wrapped_substrings = dict_dict[substr_length]
 
-        for substr_length in relevant_lengths:
-            logger.debug(
-                "Searching for scrambled substrings of length: %s", substr_length
-            )
-            wrapped_substrings = dict_dict[substr_length]
-            num_scrambled_substrings = 0
-            for wrapper in wrapped_substrings:
-                logger.debug("Checking for scrambled instances of %s", wrapper.base_str)
+        for wrapper in wrapped_substrings:
+            logger.debug("Checking for scrambled instances of %s", wrapper.base_str)
 
-                # TODO: Consider running these functions in separate threads.
-                if check_for_scrambled_substring(input_string, wrapper):
-                    num_scrambled_substrings += 1
-                    logger.debug(
-                        "Found scrambled substring of %s, proceeding to next substring.",
-                        wrapper.base_str,
-                    )
-                    break
+            # TODO: Consider running these functions in separate threads.
+            if check_for_scrambled_substring(input_string, wrapper):
+                logger.debug(
+                    "Found scrambled substring of %s, proceeding to next substring.",
+                    wrapper.base_str,
+                )
+                num_scrambled_substrings += 1
+                logger.debug(
+                    "num_scrambled_substrings incremented to: %s",
+                    num_scrambled_substrings,
+                )
+
+    return num_scrambled_substrings
 
 
 def check_for_scrambled_substring(

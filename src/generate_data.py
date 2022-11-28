@@ -45,7 +45,7 @@ def make_input_file(num_entries: int, output_file: str, max_str_length: int):
 
     with open(output_file, "w", encoding="utf-8") as file:
         for j in range(0, num_entries):
-            length = randint(1, max_str_length)
+            length = randint(2, max_str_length)
             logger.debug("Length of %s-th word is %s", j, length)
 
             # Note that k is a dummy variable.
@@ -58,6 +58,5 @@ def make_input_file(num_entries: int, output_file: str, max_str_length: int):
 
 
 if __name__ == "__main__":
-    # TODO: Remove thiis function.
-    make_dict_file(5, "./dict_file.txt", 100)
-    make_input_file(10, "./input_file.txt", 50)
+    make_dict_file(num_entries=10, output_file="./dict_file.txt", max_str_length=10)
+    make_input_file(num_entries=100, output_file="./input_file.txt", max_str_length=50)

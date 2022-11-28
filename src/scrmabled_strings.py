@@ -12,15 +12,13 @@ parser.add_argument("--input", help="Path to the input file.", required=True)
 logger = getLogger(__name__)
 
 
-def main():
+def main(dictionary_path: str, input_path: str):
     """Run the sequence of steps to produce a solution."""
-    args = parser.parse_args()
-    logger.debug("The args are %s", args)
 
     # We need to wrap the dictionary file as an actual dictioary.
     dict_dict = {}
 
-    with open(args.dictionary, "r", encoding="utf-8") as file:
+    with open(dictionary_path, "r", encoding="utf-8") as file:
         for j, line in enumerate(file.readlines()):
             logger.debug(f"The {j}-th line is: {line.rstrip()}")
             wrapper = StringWrapper(line.rstrip())
@@ -36,17 +34,28 @@ def main():
     # We need the input strings as a dictionary.
     list_input = []
 
-    with open(args.input, "r", encoding="utf-8") as file:
+    with open(input_path, "r", encoding="utf-8") as file:
         for j, line in enumerate(file.readlines()):
             logger.debug(f"The {j}-th line is: {line.rstrip()}")
             list_input.append(line.rstrip())
 
     dict_lengths = list(dict_dict)
 
-    count_scrambled_substrings(dict_dict, list_input, dict_lengths)
+    output_str = ""
 
-    # TODO: Format output.
+    for j, input_str in enumerate(list_input):
+
+        num_scrambled_substrings = count_scrambled_substrings(
+            dict_dict, input_str, dict_lengths
+        )
+        logger.debug("Checked for scrambled substrings inside of: %s", input_str)
+        logger.debug("Num of scrambled substrings: %s", num_scrambled_substrings)
+        output_str = output_str + f"Case: #{j+1} {num_scrambled_substrings}\n"
+
+    # Print to stdout.
+    print(output_str)
 
 
 if __name__ == "__main__":
-    main()
+    args = parser.parse_args()
+    main(args.dictionary, args.input)
