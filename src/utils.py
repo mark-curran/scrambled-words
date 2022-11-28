@@ -117,10 +117,17 @@ def check_for_scrambled_substring(input_string: str, wrapper: StringWrapper) -> 
             wrapper=wrapper,
         ):
             # Stop the search and return True if you find a scrambled substring.
-            logger.debug(
-                "Permutation found between index %s and %s",
+            logger.info(
+                "Permutation of %s found in %s.",
+                wrapper.base_str,
+                input_string[idx_first_letter : idx_last_letter + 1],
+            )
+            logger.info(
+                "%s is between indices %s and %s of %s.",
+                input_string[idx_first_letter : idx_last_letter + 1],
                 idx_first_letter,
-                idx_last_letter,
+                idx_last_letter + 1,
+                input_string,
             )
             return True
 

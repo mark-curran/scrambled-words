@@ -36,10 +36,16 @@ As a further efficiency gain we create the 26 integer array encoding of each of 
 
 You can run the solution, tests or local development commands by reading the following subsections. All file paths are relative to the root of the repository.
 
-At any point you can set the logging level to `DEBUG` by first running the command
+At any point you can set the logging level to `DEBUG` by first running the command.
 
 ```bash
-`export SCRAMBLED_WORDS_DEBUG_MODE=1`
+export SCRAMBLED_WORDS_DEBUG_MODE=1
+```
+
+If you want to supress `DEBUG` messages but want information about any scrambled substrings that are found to be printed to stdout, first run the command
+
+```bash
+export SCRAMBLED_WORDS_LOG_MATCHES=1
 ```
 
 ### Running the Solution
