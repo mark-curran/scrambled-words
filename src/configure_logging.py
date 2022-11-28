@@ -1,9 +1,10 @@
 """Configure logging based on environment variables."""
 import os
 import sys
-from logging import DEBUG, INFO, StreamHandler, getLogger
+from logging import DEBUG, INFO, Formatter, StreamHandler, getLogger
 
 root_logger = getLogger()
+
 
 # Set log level based on env variable.
 if "SCRAMBLED_WORDS_DEBUG_MODE" in os.environ:
@@ -12,5 +13,14 @@ if "SCRAMBLED_WORDS_DEBUG_MODE" in os.environ:
 else:
     root_logger.setLevel(INFO)
 
-# Always log to stdout.
-root_logger.addHandler(StreamHandler(stream=sys.stdout))
+# Format log messages in desired format.
+# Full list of available substitutions:
+# https://docs.python.org/3/library/logging.html#logrecord-attributes
+# TODO: If using multi-threading then add %(threadName)s
+formatter = Formatter(fmt="%(levelname)s %(funcName)s %(lineno)d: %(message)s")
+
+
+# Always log to stdout with desired format.
+handler = StreamHandler(stream=sys.stdout)
+handler.setFormatter(formatter)
+root_logger.addHandler(handler)
