@@ -10,6 +10,7 @@ from src.generate_data import make_dict_file, make_input_file
 @pytest.mark.parametrize("num_entries,max_str_length", [(8, 20), (5, 15), (10, 15)])
 def test_make_input_file(tmp_path: Path, num_entries: int, max_str_length: int):
     """Test the make_input_file function."""
+    # A temporary file to write to.
     filepath = tmp_path / "test_input_file.txt"
     make_input_file(
         num_entries=num_entries, output_file=filepath, max_str_length=max_str_length
@@ -43,6 +44,7 @@ def test_make_dict_file(
     tmp_path: Path, num_entries: int, max_str_length: int, invalid_str_length: int
 ):
     """Test the make_dict_file function."""
+    # A temporary file to write to.
     filepath = tmp_path / "test_dict_file.txt"
     make_dict_file(num_entries, filepath, max_str_length)
 

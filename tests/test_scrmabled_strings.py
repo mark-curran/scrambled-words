@@ -8,6 +8,7 @@ def test_main(capsys):
         dictionary_path="tests/data/test_dict.txt",
         input_path="tests/data/test_input.txt",
     )
+    # Capture the output.
     captured = capsys.readouterr()
 
     # NOTE: capsys append a new line character to captured strings, hence we
