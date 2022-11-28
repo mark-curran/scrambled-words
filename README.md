@@ -15,6 +15,7 @@ To run the code, run this command.
 ```
 
 TODO: Note that the string encoding must be utf-8.
+TODO: Note that the output is printed to stdout.
 
 ### Creating Sample Data
 
